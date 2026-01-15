@@ -20,13 +20,13 @@ struct MorseEncoder: MessageEncoder {
 
     func encode(_ message: String) -> TelegraphData {
         return message.uppercased()
-            .compactMap { alphabet[$0] } // Filtramos únicamente los símbolos válidos.
+            .map { alphabet[$0] ?? "?" } // En caso de símbolo desconocido, pasamos "?" como placeholder.
             .joined(separator: " ")
     }
     
     func decode(_ data: TelegraphData) -> String {
         let symbols = data.components(separatedBy: " ")
-        let decodedChars = symbols.compactMap { reverseAlphabet[$0] }
+        let decodedChars = symbols.map { reverseAlphabet[$0] ?? "?" }
         return String(decodedChars)
     }
 }
