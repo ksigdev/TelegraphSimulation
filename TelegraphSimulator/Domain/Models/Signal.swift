@@ -1,7 +1,5 @@
-///Representa el contenido crudo de la transmisión.
-///Utilizamos un typealias para que el sistema sea agnóstico al formato utilizado.
-typealias TelegraphData = String
-
+/// Representa el pulso que viaja por el sistema
+/// Transporta información (payload) y posee una intensidad (strength)
 struct Signal {
     let payload: TelegraphData
     var strength: Double
