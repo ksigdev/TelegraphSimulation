@@ -35,7 +35,7 @@ class BatteryRelay: SimpleRelay {
 
         let result = await super.transmit(signal)
 
-        if case .success(let success) = result {
+        if case .success = result {
             batteryLevel -= consumption
         }
         return result
