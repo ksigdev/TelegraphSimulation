@@ -43,10 +43,10 @@ struct PhysicalChannel: SignalTransmitter {
         guard newSignal.isReadable else {
 
             // Calculamos en qué punto la señal ha perdido la mínima fuerza necesaria para ser legible.
-            let availableStrength = newSignal.strength - 0.1
+            let availableStrength = signal.strength - 0.1
             let maxDistance = availableStrength / type.degradationRate
             let pointOfFailure = min(maxDistance, length)
-            let failureDetail = "\(id) a los \(pointOfFailure)) km"
+            let failureDetail = "\(id) a los \(pointOfFailure) km"
             return .failure(.signalLost(at: failureDetail))
         }
 
