@@ -1,11 +1,27 @@
-struct LandChannel: SignalTransmitter {
+/// Representa un tramo de cable físico que degrada la señal en función del tipo de cable y de la distancia.
+struct PhysicalChannel: SignalTransmitter {
     let id: String
     let length: Double  // Longitud en kms
-    private let degradationRate: Double = 0.001 // Ratio de degradación por km. (0,1% x km)
+    let type: ChannelType
 
-    init(id: String, length: Double) {
+    enum ChannelType {
+        case land
+        case submarine
+        case simulated(degradationRate: Double)
+
+        var degradationRate: Double {
+            switch self {
+            case .land: return 0.001
+            case .submarine: return 0.002
+            case .simulated(degradationRate: let degradationRate): return degradationRate
+            }
+        }
+    }
+
+    init(id: String, length: Double, type: ChannelType) {
         self.id = id
         self.length = length
+        self.type = type
     }
 
     func transmit(_ signal: Signal) async -> Result<Signal, TransmissionError> {
@@ -19,7 +35,7 @@ struct LandChannel: SignalTransmitter {
         try? await Task.sleep(nanoseconds: UInt64(length * 10_000_000))
 
         // Aplicamos degradación en función de la longitud del canal.
-        let loss = length * degradationRate
+        let loss = length * type.degradationRate
         let newStrength = signal.strength - loss
         let newSignal = Signal(payload: signal.payload, strength: newStrength)
 
