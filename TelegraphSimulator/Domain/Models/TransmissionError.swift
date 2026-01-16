@@ -5,6 +5,7 @@ enum TransmissionError: Error {
     case signalLost(at: String)
     case componentFailure(id: String, details: String)
     case decodingError(details: String)
+    case noBattery(id: String)
 }
 
 /// Separamos la lógica de presentación del error.
@@ -17,6 +18,8 @@ extension TransmissionError: LocalizedError {
             return "ERROR: El componente \(id) ha fallado: \(details)"
         case .decodingError(details: let details):
             return "ERROR: Error de decodificación: \(details)"
+        case .noBattery(id: let id):
+            return "ERROR: Batería insuficiente en el componente \(id)"
         }
     }
 }
