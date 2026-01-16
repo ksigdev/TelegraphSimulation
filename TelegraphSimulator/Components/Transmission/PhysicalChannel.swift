@@ -39,9 +39,15 @@ struct PhysicalChannel: SignalTransmitter {
         let newStrength = signal.strength - loss
         let newSignal = Signal(payload: signal.payload, strength: newStrength)
 
-        // Comprobamos que la señal sigue siendo legible.
+        // Comprobamos que la señal sigue siendo legible
         guard newSignal.isReadable else {
-            return .failure(.signalLost(at: id))
+
+            // Calculamos en qué punto la señal ha perdido la mínima fuerza necesaria para ser legible.
+            let availableStrength = newSignal.strength - 0.1
+            let maxDistance = availableStrength / type.degradationRate
+            let pointOfFailure = min(maxDistance, length)
+            let failureDetail = "\(id) a los \(pointOfFailure)) km"
+            return .failure(.signalLost(at: failureDetail))
         }
 
         print("[\(id)] - Transmisión exitosa")
