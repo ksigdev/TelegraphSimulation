@@ -15,7 +15,11 @@ class TelegraphCoordinator {
         print("INICIANDO TRANSMISIÓN")
 
         emitter.turnOn()
-
+        guard emitter.isActive else {
+            print("[\(emitter.id)]: \(emitter.id) está desactivado")
+            print("ABORTANDO TRANSMISIÓN")
+            return
+        }
         // El emisor comienza el envío del mensaje.
         var currentSignal = emitter.emit(message: message)
 
@@ -41,7 +45,7 @@ class TelegraphCoordinator {
         // Se obtiene el resultado final de la transmissión.
         switch finalResult {
         case .success(let decodedMessage):
-            print("Mensaje recibido correctamente: \(decodedMessage)")
+            print("[\(receiver.id)]: Mensaje recibido correctamente: \(decodedMessage)")
         case .failure(let error):
             print(error.localizedDescription)
         }
