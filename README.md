@@ -20,3 +20,10 @@ Al ejecutar el programa, puedes usar:
 - **Protocols**: Contratos para emisores, receptores y transmisores.
 - **Components**: Implementación física de cables y relés.
 - **System**: El `TelegraphCoordinator` que orquesta la comunicación.
+
+## 🔧 Instalación y Ejecución
+
+1. **Clona el repositorio** en tu equipo local.
+2. **Abre el proyecto** haciendo doble clic en el archivo con extensión `.xcodeproj` en **Xcode**.
+3. **Selecciona el target** `TelegraphSimulator` en la barra de herramientas superior.
+4. **Pulsa `Cmd + R`** para compilar y ejecutar el simulador directamente en la consola de Xcode.
