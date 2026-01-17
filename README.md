@@ -18,7 +18,7 @@ Al ejecutar el programa, puedes usar:
 ## 📦 Estructura del Proyecto
 - **Models**: Definición de `Signal` y tipos de error.
 - **Protocols**: Contratos para emisores, receptores y transmisores.
-- **Components**: Implementación física de cables y relés.
+- **Components**: Implementación física de los componentes del sistema: emisor, receptor, decodificador, cables y relés.
 - **System**: El `TelegraphCoordinator` que orquesta la comunicación.
 
 ## 🔧 Instalación y Ejecución
