@@ -6,13 +6,13 @@ struct EmitterActor: MessageEmitter {
     // Activa el emisor.
     mutating func turnOn() {
         isActive = true
-        print("[\(id)] Emisor \(id) activado.")
+        print("[\(id)] \(id) activado.")
     }
 
     // Desactiva el emisor.
     mutating func turnOff() {
         isActive = false
-        print("[\(id)] Emisor \(id) desactivado.")
+        print("[\(id)] \(id) desactivado.")
     }
 
     // Inicia el envío del mensaje.
@@ -20,7 +20,7 @@ struct EmitterActor: MessageEmitter {
 
         // Si el emisor está desactivado, "envía" una señal vacía y sin fuerza.
         guard isActive else {
-            print("[\(id)] Emisor \(id) está desactivado")
+            print("[\(id)] \(id) está desactivado")
             return Signal(payload: "", strength: 0.0)
         }
         
