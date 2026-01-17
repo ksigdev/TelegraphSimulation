@@ -12,14 +12,15 @@ class TelegraphCoordinator {
     }
 
     func send(message: String) async {
-        print("INICIANDO TRANSMISIÓN")
+        print("\nINICIANDO TRANSMISIÓN")
 
-        emitter.turnOn()
+        // Comprobamos que el emisor está activado antes de comenzar la transmisión.
         guard emitter.isActive else {
             print("[\(emitter.id)]: \(emitter.id) está desactivado")
             print("ABORTANDO TRANSMISIÓN")
             return
         }
+
         // El emisor comienza el envío del mensaje.
         var currentSignal = emitter.emit(message: message)
 
@@ -34,7 +35,6 @@ class TelegraphCoordinator {
                 currentSignal = newSignal
             case .failure(let error):
                 print(error.localizedDescription)
-                emitter.turnOff()
                 return
             }
         }
@@ -49,8 +49,7 @@ class TelegraphCoordinator {
         case .failure(let error):
             print(error.localizedDescription)
         }
-        
-        emitter.turnOff()
+
         print("FIN DE LA TRANSMISIÓN")
     }
 }
