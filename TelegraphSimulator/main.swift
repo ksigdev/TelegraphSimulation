@@ -1,8 +1,8 @@
 import Foundation
 
 let encoder = MorseEncoder()
-var emitter = EmitterActor(id: "Emisor-1", encoder: encoder)
-var receiver = ReceiverActor(id: "Receptor-1", encoder: encoder)
+let emitter = EmitterActor(id: "Emisor-1", encoder: encoder)
+let receiver = ReceiverActor(id: "Receptor-1", encoder: encoder)
 let network: [any SignalTransmitter] = [
     PhysicalChannel(id: "Cable-Terrestre-1", length: 20, type: .land),
     SmartRelay(id: "Relay-1"),

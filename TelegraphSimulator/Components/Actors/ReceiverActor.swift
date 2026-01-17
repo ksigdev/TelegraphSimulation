@@ -1,7 +1,13 @@
-struct ReceiverActor: MessageReceiver {
+class ReceiverActor: MessageReceiver {
     let id: String
     let encoder: any MessageEncoder
-    let maximumErrorRate: Double = 0.3 // Porcentaje máximo de símbolos desconocidos permitidos en el mensaje.
+    let maximumErrorRate: Double // Porcentaje máximo de símbolos desconocidos permitidos en el mensaje.
+
+    init(id: String, encoder: any MessageEncoder, maximumErrorRate: Double = 0.3) {
+        self.id = id
+        self.encoder = encoder
+        self.maximumErrorRate = maximumErrorRate
+    }
 
     func receive(_ signal: Signal) -> Result<String, TransmissionError> {
         

@@ -1,16 +1,22 @@
-struct EmitterActor: MessageEmitter {
+class EmitterActor: MessageEmitter {
     let id: String
     var encoder: any MessageEncoder
-    var isActive: Bool = false
+    var isActive: Bool
+
+    init(id: String, encoder: any MessageEncoder, isActive: Bool = false) {
+        self.id = id
+        self.encoder = encoder
+        self.isActive = isActive
+    }
 
     // Activa el emisor.
-    mutating func turnOn() {
+    func turnOn() {
         isActive = true
         print("[\(id)] Emisor activado.")
     }
 
     // Desactiva el emisor.
-    mutating func turnOff() {
+    func turnOff() {
         isActive = false
         print("[\(id)] Emisor desactivado.")
     }
