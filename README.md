@@ -1,0 +1,22 @@
+# 📡 Telegraph Simulator
+
+Un simulador interactivo de red de telegrafía desarrollado en **Swift**. Este proyecto modela la transmisión de mensajes codificados en Morse a través de una red física con degradación de señal y gestión de hardware.
+
+## 🚀 Funcionalidades
+- **Codificación Morse**: Traducción de texto a pulsos de señal.
+- **Simulación Física**: Cálculo de pérdida de intensidad por kilómetro y tipo de cable.
+- **Consola Interactiva**: Menú de comandos para operar el sistema en tiempo real.
+- **Gestión de Energía**: Control manual de encendido/apagado del emisor.
+
+## ⌨️ Guía de Comandos
+Al ejecutar el programa, puedes usar:
+- `enviar`: Para redactar y transmitir un mensaje.
+- `on` / `off`: Para activar o desactivar el emisor.
+- `status`: Para comprobar el estado actual del hardware.
+- `salir`: Para cerrar el simulador.
+
+## 📦 Estructura del Proyecto
+- **Models**: Definición de `Signal` y tipos de error.
+- **Protocols**: Contratos para emisores, receptores y transmisores.
+- **Components**: Implementación física de cables y relés.
+- **System**: El `TelegraphCoordinator` que orquesta la comunicación.
